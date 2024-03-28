@@ -1,0 +1,15 @@
+<div class="pokemon-grid">
+  <div *ngFor="let pokemon of pokemons" class="pokemon-card">
+    <img [src]="pokemon.url" alt="{{ pokemon.name }} Image">
+    <p>{{ pokemon.name }}</p>
+  </div>
+</div>
+
+<div class="pagination-buttons">
+  <button (click)="fetchPreviousPokemons()" [disabled]="!pokemonsService.previousUrl">
+    Previous
+  </button>
+  <button (click)="fetchNextPokemons()" [disabled]="!pokemonsService.nextUrl">
+    Next
+  </button>
+</div>

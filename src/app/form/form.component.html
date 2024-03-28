@@ -1,0 +1,17 @@
+<form #form="ngForm" (ngSubmit)="onSubmit(form)" >
+    <input type="text" placeholder="Enter Full Name" pattern='^[A-Za-z ]+$' ngModel name="fullName" required #nameInput="ngModel"><br>
+    <span *ngIf="nameInput.invalid && (nameInput.dirty || nameInput.touched)" [ngStyle]="{'color':'red'}">Enter Full Name.</span>
+    
+    <input type="email" placeholder="Enter your E-mail" ngModel name="email" required email #emailInput="ngModel"><br>
+    <span *ngIf="emailInput.invalid && (emailInput.dirty || emailInput.touched)" [ngStyle]="{'color':'red'}">Invalid Email.</span>
+    
+    <div ngModelGroup="PhoneNumber" #userData="ngModelGroup" class = "fullPhoneNumber">
+        <input type="text" placeholder="Phone Prefix" pattern="[0-9]{3}" ngModel name="phonePrefix" required #prefInput="ngModel" class = "phonePrefix"><br>
+        <input type="text" placeholder="Phone Number" pattern="[0-9]{7}" ngModel name="phoneNumber" required #phoneInput="ngModel" class = "phoneNumber"><br>
+    </div>
+    <span *ngIf="userData.invalid && (userData.dirty || userData.touched)" [ngStyle]="{'color':'red'}">Invalid Phone Number</span>
+    
+    <input type="text" placeholder="Enter your credit card number" pattern="[0-9]{16}" ngModel name="creditCard" required #creditInput="ngModel"><br>
+    <span *ngIf="creditInput.invalid && (creditInput.dirty || creditInput.touched)" [ngStyle]="{'color':'red'}">Please enter valid credit card number.</span>
+    <button type="submit" [disabled]="!form.valid" onclick="alert('Payment Done Successfully!')">Pay</button>
+</form>
